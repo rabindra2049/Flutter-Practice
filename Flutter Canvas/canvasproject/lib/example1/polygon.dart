@@ -76,6 +76,13 @@ class PolygonPainter extends CustomPainter {
     crossPolygon.relativeLineTo(50,0);
     crossPolygon.close();
     canvas.drawPath(crossPolygon, paint);
+
+    final parallel = Path();
+    parallel.moveTo(150, 500);
+    parallel.relativeLineTo(100, 0);
+    parallel.moveTo(150, 520);
+    parallel.relativeLineTo(100, 0);
+    canvas.drawPath(parallel, paint);
   }
 
   @override
