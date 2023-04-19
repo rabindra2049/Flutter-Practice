@@ -1,4 +1,4 @@
-import 'package:canvasproject/example1/polygon.dart';
+import 'package:canvasproject/example2/circle.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const PolygonScreen(),
+      home: const CircleScreen(),
     );
   }
 }
