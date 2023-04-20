@@ -1,5 +1,6 @@
 import 'package:canvasproject/example2/circle.dart';
 import 'package:canvasproject/example3/arc_curve.dart';
+import 'package:canvasproject/example4/bezier_curves.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const ArcCurveScreen(),
+      home: const BezierCurveScreen(),
     );
   }
 }
