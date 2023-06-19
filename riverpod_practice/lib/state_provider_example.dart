@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_practice/main.dart';
+
+final counterProvider = StateProvider<int>((ref) => 0);
 
 class StateProviderExample extends ConsumerWidget {
   const StateProviderExample({Key? key}) : super(key: key);

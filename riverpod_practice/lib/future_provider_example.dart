@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_practice/main.dart';
+
+import 'api_service.dart';
+
+final apiProvider = Provider<ApiService>((ref) => ApiService());
+
+final userDataProvider =
+    FutureProvider<List<UserModel>>((ref) => ref.read(apiProvider).getUser());
 
 class FutureProviderExample extends ConsumerWidget {
   const FutureProviderExample({Key? key}) : super(key: key);
@@ -17,14 +23,14 @@ class FutureProviderExample extends ConsumerWidget {
             return ListView.builder(
                 itemCount: data.length,
                 itemBuilder: (context, index) {
-              return ListTile(
-                title: Text("${data[index].firstName}"),
-                subtitle: Text("${data[index].email}"),
-                leading: CircleAvatar(
-                  child: Image.network(data[index].avatar!!),
-                ),
-              );
-            });
+                  return ListTile(
+                    title: Text("${data[index].firstName}"),
+                    subtitle: Text("${data[index].email}"),
+                    leading: CircleAvatar(
+                      child: Image.network(data[index].avatar!!),
+                    ),
+                  );
+                });
           },
           error: ((error, stackTrace) => Text(error.toString())),
           loading: () {

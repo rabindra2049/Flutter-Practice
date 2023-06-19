@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_practice/main.dart';
+
+final streamProvider = StreamProvider<int>((ref) {
+  return Stream.periodic(Duration(seconds: 2), ((count) => count));
+});
 
 class StreamProviderExample extends ConsumerWidget {
   const StreamProviderExample({Key? key}) : super(key: key);

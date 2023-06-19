@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_practice/main.dart';
+
+import 'counter_demo.dart';
+
+final countStateProvider =
+    StateNotifierProvider<CounterDemo, int>((ref) => CounterDemo());
 
 class StateNotifierProviderExample extends ConsumerWidget {
   const StateNotifierProviderExample({Key? key}) : super(key: key);
