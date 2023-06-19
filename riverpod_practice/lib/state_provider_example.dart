@@ -20,8 +20,9 @@ class StateProviderExample extends ConsumerWidget {
         actions: [
           IconButton(
               onPressed: () {
-                 ref.invalidate(counterProvider);
-                // ref.refresh(counterProvider);
+                ref.invalidate(counterProvider);
+                // print(ref.refresh(counterProvider));
+                //ref.refresh(counterProvider);
               },
               icon: Icon(Icons.refresh))
         ],
