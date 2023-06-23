@@ -1,4 +1,4 @@
-enum MoviesType { popular, latest, nowPlaying, topRated, upcoming }
+enum MoviesType { popular, latest, now_playing, top_rated, upcoming }
 
 extension MovieTypeExtension on MoviesType {
   String get value => toString().split('.').last;
@@ -12,10 +12,10 @@ extension MovieTypeExtension on MoviesType {
       case MoviesType.latest:
         name = "Latest";
         break;
-      case MoviesType.nowPlaying:
+      case MoviesType.now_playing:
         name = "Now Playing";
         break;
-      case MoviesType.topRated:
+      case MoviesType.top_rated:
         name = "Top rated";
         break;
       case MoviesType.upcoming:
