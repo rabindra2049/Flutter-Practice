@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:riverpod_project_one/config_file.dart';
+import 'package:riverpod_project_one/model/cast/cast.dart';
 import 'package:riverpod_project_one/model/movie/movie.dart';
+import 'package:riverpod_project_one/model/movieDetails/movie_details.dart';
 import 'package:riverpod_project_one/model/movieResponse/movie_response.dart';
 import 'package:riverpod_project_one/movie_type_extension.dart';
 
@@ -42,4 +44,35 @@ final moviesProvider = FutureProvider<List<Movie>>((ref) async {
   final response = await client.get(url);
   final responseData = jsonDecode(response.body);
   return MovieResponse.fromJson(responseData).results!;
+});
+
+
+final movieIDProvider = StateProvider<int>((ref) {
+  return 0;
+});
+
+final moviesDetailsProvider = FutureProvider<MovieDetails>((ref) async {
+  final movieID = ref.watch(movieIDProvider);
+  final baseUrl = ref.watch(baseUrlProvider);
+  final endpoint = 'movie/${movieID.toString()}';
+  final queryParam = {'api_key': ConfigFile.apiKey};
+  final url =
+  Uri.parse('$baseUrl$endpoint').replace(queryParameters: queryParam);
+  final client = ref.read(httpProvider);
+  final response = await client.get(url);
+  final responseData = jsonDecode(response.body);
+  return MovieDetails.fromJson(responseData);
+});
+
+final castProvider = FutureProvider<Cast>((ref) async {
+  final movieID = ref.watch(movieIDProvider);
+  final baseUrl = ref.watch(baseUrlProvider);
+  final endpoint = 'movie/${movieID.toString()}/credits';
+  final queryParam = {'api_key': ConfigFile.apiKey};
+  final url =
+  Uri.parse('$baseUrl$endpoint').replace(queryParameters: queryParam);
+  final client = ref.read(httpProvider);
+  final response = await client.get(url);
+  final responseData = jsonDecode(response.body);
+  return Cast.fromJson(responseData);
 });

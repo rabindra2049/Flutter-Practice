@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_project_one/view/home_page.dart';
+import 'package:riverpod_project_one/route/router_config.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -12,7 +12,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       title: 'Movie App with RiverPod',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -20,7 +21,6 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       themeMode: ThemeMode.light,
-      home: const HomePage(),
     );
   }
 }
