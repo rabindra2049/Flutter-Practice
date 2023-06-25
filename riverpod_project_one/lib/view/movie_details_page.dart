@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconly/iconly.dart';
 import 'package:riverpod_project_one/model/movie/movie.dart';
 import 'package:riverpod_project_one/model/movieDetails/movie_details.dart';
-import 'package:riverpod_project_one/provider.dart';
+import 'package:riverpod_project_one/service/provider.dart';
 import 'package:riverpod_project_one/view/widgets/cast_list.dart';
 import 'package:riverpod_project_one/view/widgets/recommended_movie.dart';
 import 'package:riverpod_project_one/view/widgets/silver_app_bar.dart';

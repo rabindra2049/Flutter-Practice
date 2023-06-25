@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_project_one/movie_type_extension.dart';
-import 'package:riverpod_project_one/provider.dart';
+import 'package:riverpod_project_one/service/provider.dart';
 
 class MovieTags extends ConsumerWidget {
   const MovieTags({Key? key}) : super(key: key);

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_project_one/config_file.dart';
 import 'package:riverpod_project_one/model/movie/movie.dart';
-import 'package:riverpod_project_one/provider.dart';
+import 'package:riverpod_project_one/service/provider.dart';
 
 class RecommendedWidget extends ConsumerWidget {
   const RecommendedWidget({super.key});

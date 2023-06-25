@@ -8,6 +8,7 @@ class ConfigFile {
   static const imageBaseUrlCover = String.fromEnvironment('IMAGE_BASE_URL',
       defaultValue: "https://image.tmdb.org/t/p/w500_and_h282_face/");
 
-  static const apiKey = String.fromEnvironment('API_KEY',
-      defaultValue: "709dd7d81d18788a7277683e0c11215f");
+  static const apiKey = String.fromEnvironment('API_KEY');
+
+  // --dart-define API_KEY=709dd7d81d18788a7277683e0c11215f
 }

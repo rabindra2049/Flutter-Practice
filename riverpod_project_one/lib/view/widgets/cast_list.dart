@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_project_one/config_file.dart';
 import 'package:riverpod_project_one/model/cast/cast.dart';
-import 'package:riverpod_project_one/provider.dart';
+import 'package:riverpod_project_one/service/provider.dart';
 
 class CastList extends ConsumerWidget {
   const CastList({Key? key}) : super(key: key);

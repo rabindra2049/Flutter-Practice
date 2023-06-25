@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
 import 'package:riverpod_project_one/config_file.dart';
-import 'package:riverpod_project_one/provider.dart';
+import 'package:riverpod_project_one/service/provider.dart';
 import 'package:riverpod_project_one/view/widgets/movie_tag_widget.dart';
 
 class HomePage extends StatelessWidget {
@@ -184,6 +184,7 @@ class HomePage extends StatelessWidget {
                             }),
                       ),
                   error: ((error, stackTrace) {
+                    debugPrintStack(stackTrace: stackTrace);
                     return Text(error.toString());
                   }),
                   loading: () {
