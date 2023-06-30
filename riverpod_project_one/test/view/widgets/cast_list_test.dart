@@ -6,6 +6,7 @@ import 'package:mockito/mockito.dart';
 import 'package:riverpod_project_one/model/cast/cast.dart';
 import 'package:riverpod_project_one/model/cast/casts.dart';
 import 'package:riverpod_project_one/service/provider.dart';
+import 'package:riverpod_project_one/view/widgets/cast_list.dart';
 import 'package:riverpod_project_one/view/widgets/cast_list_widget.dart';
 
 class MockHttpClient extends Mock implements http.Client {}
@@ -15,8 +16,7 @@ void main() {
   setUpAll(() async {
     mockHttpClient = MockHttpClient();
   });
-  testWidgets("CastListWidget displays cast data correctly",
-      (WidgetTester tester) async {
+  testWidgets('CastList render correctly', (WidgetTester tester) async {
     //Create sample cast data
     final castData = Cast(
       id: 1,
@@ -29,7 +29,7 @@ void main() {
           name: 'John Doe',
           original_name: 'John Doe',
           popularity: 9.8,
-          profile_path: 'iPx1s7EuBEmty7MXdKSBpEBsGYT.jpg',
+          profile_path: '/profile.jpg',
           cast_id: 1234,
           character: 'Character Name',
           credit_id: 'credit_id',
@@ -43,7 +43,7 @@ void main() {
           name: 'John Doe',
           original_name: 'John Doe',
           popularity: 9.8,
-          profile_path: 'liV9OXUeo7T19hhjFlqTELtETnW.jpg',
+          profile_path: '/profile.jpg',
           cast_id: 1234,
           character: 'Character Name',
           credit_id: 'credit_id',
@@ -51,18 +51,27 @@ void main() {
         ),
       ],
     );
+
+    //Create a mock CastProvider
+    final castProvider = Provider<Cast>((ref) => castData);
     await tester.pumpWidget(
       ProviderScope(
-          overrides: [httpProvider.overrideWithValue(mockHttpClient)],
-          child: MaterialApp(
+          overrides: [
+            castProvider.overrideWithValue(castData),
+            httpProvider.overrideWithValue(mockHttpClient)
+          ],
+          child: const MaterialApp(
             home: Scaffold(
-              body: CastListWidget(data: castData),
+              body: CastList(),
             ),
           )),
     );
-
     await tester.pumpAndSettle();
 
-   // expect(find.text("John Doe"), findsNWidgets(1));
+    final castListWidgetFinder = find.byType(CastListWidget);
+    expect(castListWidgetFinder, findsOneWidget);
+
+    final castListWidget = tester.widget<CastListWidget>(castListWidgetFinder);
+    expect(castListWidget.data, castData);
   });
 }
