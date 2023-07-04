@@ -1,19 +1,18 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart' as http;
-import 'package:mockito/mockito.dart';
 import 'package:riverpod_project_one/model/cast/cast.dart';
 import 'package:riverpod_project_one/model/cast/casts.dart';
-import 'package:riverpod_project_one/service/provider.dart';
 import 'package:riverpod_project_one/view/widgets/cast_list_widget.dart';
 
-class MockHttpClient extends Mock implements http.Client {}
+//class MockHttpClient extends Mock implements http.Client {}
 
 void main() {
-  late MockHttpClient mockHttpClient;
+  //late MockHttpClient mockHttpClient;
   setUpAll(() async {
-    mockHttpClient = MockHttpClient();
+    HttpOverrides.global = null;
+    // mockHttpClient = MockHttpClient();
   });
   testWidgets("CastListWidget displays cast data correctly",
       (WidgetTester tester) async {
@@ -52,17 +51,15 @@ void main() {
       ],
     );
     await tester.pumpWidget(
-      ProviderScope(
-          overrides: [httpProvider.overrideWithValue(mockHttpClient)],
-          child: MaterialApp(
-            home: Scaffold(
-              body: CastListWidget(data: castData),
-            ),
-          )),
+      MaterialApp(
+        home: Scaffold(
+          body: CastListWidget(data: castData),
+        ),
+      ),
     );
 
     await tester.pumpAndSettle();
 
-   // expect(find.text("John Doe"), findsNWidgets(1));
+    // expect(find.text("John Doe"), findsNWidgets(1));
   });
 }

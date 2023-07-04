@@ -1,15 +1,18 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:riverpod_project_one/model/movie/movie.dart';
 import 'package:riverpod_project_one/service/api_service.dart';
 import 'package:riverpod_project_one/service/provider.dart';
 
-class MockClient extends Mock implements http.Client {}
+import 'provider_test.mocks.dart';
+//class MockClient extends Mock implements http.Client {}
 
-class MockApiService extends Mock implements ApiService {}
+//class MockApiService extends Mock implements ApiService {}
 
+@GenerateNiceMocks([MockSpec<http.Client>(), MockSpec<ApiService>()])
 void main() {
   late final MockClient mockClient;
   late final MockApiService mockApiService;

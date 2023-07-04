@@ -16,13 +16,26 @@ class ApiService {
   ApiService(this.client, this.baseUrl);
 
   Future<List<Movie>> getUpComingMovies() async {
+    const headers = {'Content-Type': 'application/json'};
     const endpoint = 'movie/upcoming';
     final queryParam = {'api_key': ConfigFile.apiKey};
     final url =
         Uri.parse('$baseUrl$endpoint').replace(queryParameters: queryParam);
-    final response = await client.get(url);
-    final responseData = jsonDecode(response.body);
-    return MovieResponse.fromJson(responseData).results!;
+
+    final response = await client.get(url, headers: headers);
+
+    try {
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+        return MovieResponse.fromJson(responseData).results!;
+      } else {
+        throw Exception(
+            'Failed to fetch upcoming movies. Status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      //print('Error fetching upcoming movies: $e');
+      throw Exception('Failed to fetch upcoming movies. Error: $e');
+    }
   }
 
   Future<List<Movie>> getMoviesByType(MoviesType movieType) async {
