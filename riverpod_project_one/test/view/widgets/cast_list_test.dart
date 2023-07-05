@@ -66,7 +66,13 @@ void main() {
             ),
           )),
     );
+
+
+    final circularProgressIndicatorWidget = find.byType(CircularProgressIndicator);
+    expect(circularProgressIndicatorWidget, findsOneWidget);
+
     await tester.pumpAndSettle();
+    expect(circularProgressIndicatorWidget, findsNothing);
 
     final castListWidgetFinder = find.byType(CastListWidget);
     expect(castListWidgetFinder, findsOneWidget);

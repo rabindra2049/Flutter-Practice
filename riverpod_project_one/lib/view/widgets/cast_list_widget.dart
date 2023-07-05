@@ -13,6 +13,7 @@ class CastListWidget extends StatelessWidget {
     return SizedBox(
       height: 80,
       child: ListView.builder(
+        key: const Key('ListViewKey'),
         shrinkWrap: true,
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
