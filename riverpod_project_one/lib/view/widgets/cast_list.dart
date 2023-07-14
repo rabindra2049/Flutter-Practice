@@ -11,7 +11,9 @@ class CastList extends ConsumerWidget {
     final casts = ref.watch(castProvider);
     return casts.when(
         data: (data) => CastListWidget(data: data),
-        error: ((error, stackTrace) => Text(error.toString())),
+        error: ((error, stackTrace) => Text(
+            key:ValueKey("errorKey"),
+            error.toString())),
         loading: (() {
           return const CircularProgressIndicator();
         }));

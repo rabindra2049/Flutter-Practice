@@ -21,14 +21,15 @@ class CastListWidget extends StatelessWidget {
         itemBuilder: (context, index) {
           final cast = data.cast[index];
           return SizedBox(
-            width: MediaQuery.of(context).size.width * 0.43,
+            width: MediaQuery.sizeOf(context).width * 0.43,
             // height: 70,
             child: ListTile(
+              key: ValueKey(cast.id.toString()),
               leading: CircleAvatar(
                 backgroundColor: Colors.grey.withOpacity(0.1),
                 radius: 30,
-                backgroundImage: NetworkImage(
-                    '${ConfigFile.imageBaseUrl}${cast.profile_path}'),
+                /*backgroundImage: NetworkImage(
+                    '${ConfigFile.imageBaseUrl}${cast.profile_path}'),*/
               ),
               title: Text(cast.known_for_department,
                   style: theme.textTheme.overline),
