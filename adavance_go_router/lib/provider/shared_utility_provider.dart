@@ -25,4 +25,12 @@ class SharedUtility {
   void setAuthenticate({required bool isLogin}) {
     sharedPreferences.setBool(sharedAuthenticateKey, isLogin);
   }
+
+  String getLocale() {
+    return sharedPreferences.getString(localeKey) ?? 'en';
+  }
+
+  void setLocale({required String locale}) {
+    sharedPreferences.setString(localeKey, locale);
+  }
 }

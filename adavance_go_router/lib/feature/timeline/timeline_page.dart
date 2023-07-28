@@ -1,3 +1,4 @@
+import 'package:adavance_go_router/utils/app_localizations_extension.dart';
 import 'package:flutter/material.dart';
 
 class TimelinePage extends StatefulWidget {
@@ -14,11 +15,11 @@ class _TimelinePageState extends State<TimelinePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: const Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Timeline Screen'),
+            Text(context.appLocalizations.timeLineScreen),
           ],
         ),
       ),

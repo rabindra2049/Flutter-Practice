@@ -1,6 +1,7 @@
 import 'package:adavance_go_router/feature/dashboard/dashboard_page.dart';
 import 'package:adavance_go_router/feature/settings/settings_page.dart';
 import 'package:adavance_go_router/feature/timeline/timeline_page.dart';
+import 'package:adavance_go_router/utils/app_localizations_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -47,13 +48,14 @@ class _BottomNavigationWidgetState
           fontSize: 12,
           fontWeight: FontWeight.w500,
         ),
-        items: const [
+        items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.home, size: 30), label: 'Home'),
+              icon: const Icon(Icons.home, size: 30),
+              label: context.appLocalizations.home),
           BottomNavigationBarItem(
-              icon: Icon(Icons.access_time, size: 30), label: 'Timeline'),
+              icon: const Icon(Icons.access_time, size: 30), label: context.appLocalizations.timeLineScreen),
           BottomNavigationBarItem(
-              icon: Icon(Icons.settings, size: 30), label: 'Settings'),
+              icon: const Icon(Icons.settings, size: 30), label: context.appLocalizations.settings),
         ]);
   }
 }

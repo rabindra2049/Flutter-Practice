@@ -18,9 +18,9 @@ class _SplashScreenPageState extends ConsumerState<SplashScreenPage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 1), () {
       //rootNavigator.currentState.pushNamed(LoginPage.routeName)
-      context.goNamed(LoginPage.route);
+      context.go(LoginPage.route);
     });
   }
 
