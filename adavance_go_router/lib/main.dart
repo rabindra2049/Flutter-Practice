@@ -25,7 +25,6 @@ class AdvanceRouteApp extends ConsumerWidget {
     //SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     final router = ref.watch(goRouterProvider);
     final sharedUtility = ref.watch(sharedUtilityProvider);
-    //final language = ref.watch(languageProvider);
     return MaterialApp.router(
       locale: Locale(sharedUtility.locale),
       localizationsDelegates: const [

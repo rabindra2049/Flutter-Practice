@@ -6,8 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
-import '../../provider/locale_change_provider.dart';
-
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
   static String routeName = 'login';
@@ -53,11 +51,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 } else {
                   sharedUtilityNotifier.setAuthenticate(isLogin: false);
                 }
-
-                print('switched to: $index');
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             ToggleSwitch(
@@ -76,10 +72,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               radiusStyle: true,
               onToggle: (index) {
                 if (index == 0) {
-                  ref.read(languageProvider.notifier).update((state) => 'en');
                   sharedUtilityNotifier.setLocale(locale: 'en');
                 } else {
-                  ref.read(languageProvider.notifier).update((state) => 'de');
                   sharedUtilityNotifier.setLocale(locale: 'de');
                 }
               },
