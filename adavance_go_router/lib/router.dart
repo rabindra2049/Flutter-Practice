@@ -14,11 +14,12 @@ final GlobalKey<NavigatorState> _shellNavigator =
     GlobalKey(debugLabel: 'shell');
 
 final goRouterProvider = Provider<GoRouter>((ref) {
-  final sharedUtility = ref.watch(sharedUtilityProvider);
+  final isAuthenticated =
+      ref.watch(sharedUtilityProvider.select((value) => value.isAuthenticated));
   return GoRouter(
     redirect: (BuildContext context, GoRouterState state) {
       final lMatch = state.matchedLocation;
-      final isAuthenticated = sharedUtility.isAuthenticated;
+      //   final isAuthenticated = sharedUtility;
       if (isAuthenticated) {
         return DashboardPage.route;
       } else {
@@ -39,9 +40,6 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         path: LoginPage.route,
         name: LoginPage.routeName,
         builder: (_, __) => const LoginPage(),
-        routes: [
-          //details
-        ]
       ),
       ShellRoute(
           navigatorKey: _shellNavigator,
