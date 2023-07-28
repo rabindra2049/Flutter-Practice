@@ -19,11 +19,10 @@ final goRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     redirect: (BuildContext context, GoRouterState state) {
       final lMatch = state.matchedLocation;
-      //   final isAuthenticated = sharedUtility;
       if (isAuthenticated) {
         return DashboardPage.route;
       } else {
-        if (lMatch == SplashScreenPage.route) {
+        if (lMatch == SplashScreenPage.route || lMatch == DashboardPage.route) {
           return SplashScreenPage.route;
         }
       }
