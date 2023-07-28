@@ -1,4 +1,3 @@
-import 'package:adavance_go_router/provider/locale_change_provider.dart';
 import 'package:adavance_go_router/provider/shared_utility_provider.dart';
 import 'package:adavance_go_router/router.dart';
 import 'package:flutter/material.dart';
@@ -25,10 +24,10 @@ class AdvanceRouteApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     //SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     final router = ref.watch(goRouterProvider);
-    // final sharedUtility = ref.watch(sharedUtilityProvider);
-    final language = ref.watch(languageProvider);
+    final sharedUtility = ref.watch(sharedUtilityProvider);
+    //final language = ref.watch(languageProvider);
     return MaterialApp.router(
-      locale: Locale(language),
+      locale: Locale(sharedUtility.locale),
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

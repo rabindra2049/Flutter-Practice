@@ -16,7 +16,8 @@ class DashboardPage extends ConsumerStatefulWidget {
 class _DashboardPageState extends ConsumerState<DashboardPage> {
   @override
   Widget build(BuildContext context) {
-    final sharedUtility = ref.read(sharedUtilityProvider);
+    final sharedUtility = ref.watch(sharedUtilityProvider);
+    final shareUtilityNotifier = ref.watch(sharedUtilityProvider.notifier);
     return Scaffold(
       appBar: AppBar(),
       body: Center(
@@ -34,21 +35,21 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
               activeFgColor: Colors.white,
               inactiveBgColor: Colors.grey,
               inactiveFgColor: Colors.white,
-              initialLabelIndex: sharedUtility.isAuthenticate() ? 0 : 1,
+              initialLabelIndex: sharedUtility.isAuthenticated ? 0 : 1,
               totalSwitches: 2,
               labels: const ['Logged In', 'Logout'],
               radiusStyle: true,
               onToggle: (index) {
                 if (index == 0) {
-                  sharedUtility.setAuthenticate(isLogin: true);
+                  shareUtilityNotifier.setAuthenticate(isLogin: true);
                 } else {
-                  sharedUtility.setAuthenticate(isLogin: false);
+                  shareUtilityNotifier.setAuthenticate(isLogin: false);
                   // context.go(SplashScreenPage.route);
                 }
                 print('switched to: $index');
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             ToggleSwitch(
@@ -61,17 +62,17 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
               activeFgColor: Colors.white,
               inactiveBgColor: Colors.grey,
               inactiveFgColor: Colors.white,
-              initialLabelIndex: sharedUtility.getLocale() == 'en' ? 0 : 1,
+              initialLabelIndex: sharedUtility.locale == 'en' ? 0 : 1,
               totalSwitches: 2,
               labels: const ['English', 'Germany'],
               radiusStyle: true,
               onToggle: (index) {
                 if (index == 0) {
                   ref.read(languageProvider.notifier).update((state) => 'en');
-                  sharedUtility.setLocale(locale: 'en');
+                  shareUtilityNotifier.setLocale(locale: 'en');
                 } else {
                   ref.read(languageProvider.notifier).update((state) => 'de');
-                  sharedUtility.setLocale(locale: 'de');
+                  shareUtilityNotifier.setLocale(locale: 'de');
                 }
               },
             ),

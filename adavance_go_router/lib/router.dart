@@ -18,7 +18,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     redirect: (BuildContext context, GoRouterState state) {
       final lMatch = state.matchedLocation;
-      final isAuthenticated = sharedUtility.isAuthenticate();
+      final isAuthenticated = sharedUtility.isAuthenticated;
       if (isAuthenticated) {
         return DashboardPage.route;
       } else {

@@ -3,5 +3,5 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final languageProvider = StateProvider<String>((ref) {
   final sharedUtility = ref.read(sharedUtilityProvider);
-  return sharedUtility.getLocale();
+  return sharedUtility.locale;
 });

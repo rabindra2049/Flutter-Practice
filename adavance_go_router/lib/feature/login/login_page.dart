@@ -21,6 +21,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   @override
   Widget build(BuildContext con) {
     final sharedUtility = ref.read(sharedUtilityProvider);
+    final sharedUtilityNotifier = ref.read(sharedUtilityProvider.notifier);
     return Scaffold(
       appBar: AppBar(),
       body: Center(
@@ -41,16 +42,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               activeFgColor: Colors.white,
               inactiveBgColor: Colors.grey,
               inactiveFgColor: Colors.white,
-              initialLabelIndex: sharedUtility.isAuthenticate() ? 0 : 1,
+              initialLabelIndex: sharedUtility.isAuthenticated ? 0 : 1,
               totalSwitches: 2,
               labels: const ['Logged In', 'Logout'],
               radiusStyle: true,
               onToggle: (index) {
                 if (index == 0) {
-                  sharedUtility.setAuthenticate(isLogin: true);
+                  sharedUtilityNotifier.setAuthenticate(isLogin: true);
                   context.go(DashboardPage.route);
                 } else {
-                  sharedUtility.setAuthenticate(isLogin: false);
+                  sharedUtilityNotifier.setAuthenticate(isLogin: false);
                 }
 
                 print('switched to: $index');
@@ -69,17 +70,17 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               activeFgColor: Colors.white,
               inactiveBgColor: Colors.grey,
               inactiveFgColor: Colors.white,
-              initialLabelIndex: sharedUtility.getLocale() == 'en' ? 0 : 1,
+              initialLabelIndex: sharedUtility.locale == 'en' ? 0 : 1,
               totalSwitches: 2,
               labels: const ['English', 'Germany'],
               radiusStyle: true,
               onToggle: (index) {
                 if (index == 0) {
                   ref.read(languageProvider.notifier).update((state) => 'en');
-                  sharedUtility.setLocale(locale: 'en');
+                  sharedUtilityNotifier.setLocale(locale: 'en');
                 } else {
                   ref.read(languageProvider.notifier).update((state) => 'de');
-                  sharedUtility.setLocale(locale: 'de');
+                  sharedUtilityNotifier.setLocale(locale: 'de');
                 }
               },
             ),

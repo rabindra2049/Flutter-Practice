@@ -6,11 +6,50 @@ final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
   throw UnimplementedError();
 });
 
-final sharedUtilityProvider = Provider<SharedUtility>((ref) {
+final sharedUtilityProvider =
+    StateNotifierProvider<SharedUtilityNotifier, SharedUtilityState>((ref) {
   final sharedPrefs = ref.watch(sharedPreferencesProvider);
-  return SharedUtility(sharedPreferences: sharedPrefs);
+  return SharedUtilityNotifier(sharedPreferences: sharedPrefs);
 });
 
+class SharedUtilityState {
+  final bool isAuthenticated;
+  final String locale;
+
+  SharedUtilityState({
+    required this.isAuthenticated,
+    required this.locale,
+  });
+
+  SharedUtilityState copyWith({bool? isAuthenticated, String? locale}) {
+    return SharedUtilityState(
+      isAuthenticated: isAuthenticated ?? this.isAuthenticated,
+      locale: locale ?? this.locale,
+    );
+  }
+}
+
+class SharedUtilityNotifier extends StateNotifier<SharedUtilityState> {
+  final SharedPreferences sharedPreferences;
+
+  SharedUtilityNotifier({required this.sharedPreferences})
+      : super(SharedUtilityState(
+            isAuthenticated:
+                sharedPreferences.getBool(sharedAuthenticateKey) ?? false,
+            locale: sharedPreferences.getString(localeKey) ?? 'en'));
+
+  void setAuthenticate({required bool isLogin}) {
+    state = state.copyWith(isAuthenticated: isLogin);
+    sharedPreferences.setBool(sharedAuthenticateKey, isLogin);
+  }
+
+  void setLocale({required String locale}) {
+    state = state.copyWith(locale: locale);
+    sharedPreferences.setString(localeKey, locale);
+  }
+}
+
+/*
 class SharedUtility {
   SharedUtility({
     required this.sharedPreferences,
@@ -33,4 +72,4 @@ class SharedUtility {
   void setLocale({required String locale}) {
     sharedPreferences.setString(localeKey, locale);
   }
-}
+}*/
